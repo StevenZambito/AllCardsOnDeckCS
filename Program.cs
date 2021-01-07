@@ -8,7 +8,6 @@ namespace AllCardsOnDeckCS
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to 'All Cards On Deck'");
 
             var deckOfCards = new List<string>();
 
@@ -22,12 +21,38 @@ namespace AllCardsOnDeckCS
                     deckOfCards.Add($"{ranks[i]} of {suits[j]}");
                 }
             }
-            Console.WriteLine("This is the deck of cards");
+
+            Console.WriteLine("This is the deck of cards:");
+            Console.WriteLine(" ");
 
             foreach (var card in deckOfCards)
             {
                 Console.WriteLine(card);
             }
+
+            Console.WriteLine(" ");
+            Console.WriteLine("Shuffling the deck...");
+
+            for (var i = deckOfCards.Count - 1; i > 0; i--)
+            {
+                var randomNumber = new Random().Next(i - 1);
+                var leftCard = deckOfCards[randomNumber];
+                var rightCard = deckOfCards[i];
+
+                deckOfCards[randomNumber] = rightCard;
+                deckOfCards[i] = leftCard;
+            }
+
+            Console.WriteLine("This is the new shuffled deck:");
+            Console.WriteLine(" ");
+
+            foreach (var card in deckOfCards)
+            {
+                Console.WriteLine(card);
+            }
+
+            Console.WriteLine(" ");
+            Console.WriteLine($"These are the top two cards: {deckOfCards[0]} and {deckOfCards[1]}.");
         }
     }
 }
